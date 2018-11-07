@@ -173,8 +173,7 @@
         }
         return YES;
     }
-    int n = self.viewControllers.count >= navigationBar.items.count ? 2 : 1;
-    UIViewController *popToVc = self.viewControllers[self.viewControllers.count - n];
+    UIViewController *popToVc = self.viewControllers[self.viewControllers.count - 2];
     [self popToViewController:popToVc animated:YES];
     return YES;
 }
