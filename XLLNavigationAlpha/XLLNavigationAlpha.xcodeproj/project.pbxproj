@@ -23,6 +23,7 @@
 		A9A867C4218AC2B70042C298 /* XLLNavigationAlphaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A867C3218AC2B70042C298 /* XLLNavigationAlphaTests.m */; };
 		A9A867D4218AC3F60042C298 /* UINavigationController+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A867D3218AC3F60042C298 /* UINavigationController+Alpha.m */; };
 		A9A867D7218ACA700042C298 /* UIViewController+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A867D6218ACA700042C298 /* UIViewController+Alpha.m */; };
+		A9DA9AD2222383090087D9B3 /* XLLBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9DA9AD1222383090087D9B3 /* XLLBaseController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,8 @@
 		A9A867D3218AC3F60042C298 /* UINavigationController+Alpha.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Alpha.m"; sourceTree = "<group>"; };
 		A9A867D5218ACA700042C298 /* UIViewController+Alpha.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alpha.h"; sourceTree = "<group>"; };
 		A9A867D6218ACA700042C298 /* UIViewController+Alpha.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alpha.m"; sourceTree = "<group>"; };
+		A9DA9AD0222383090087D9B3 /* XLLBaseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLLBaseController.h; sourceTree = "<group>"; };
+		A9DA9AD1222383090087D9B3 /* XLLBaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XLLBaseController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +97,6 @@
 				A9192CF7218C1917008544E8 /* XLLMineController.m */,
 				A94D6E40218C35CE000F7140 /* XLLNextController.h */,
 				A94D6E41218C35CE000F7140 /* XLLNextController.m */,
-				A9192CFC218C1ECD008544E8 /* XLLNavigationController.h */,
-				A9192CFD218C1ECD008544E8 /* XLLNavigationController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -131,6 +132,7 @@
 		A9A867A6218AC2B50042C298 /* XLLNavigationAlpha */ = {
 			isa = PBXGroup;
 			children = (
+				A9DA9ACE222382DF0087D9B3 /* Macro */,
 				A9A867D1218AC3D60042C298 /* Tools */,
 				A9A867D0218AC3670042C298 /* General */,
 				A9A867CF218AC2C60042C298 /* SupportingFiles */,
@@ -190,6 +192,25 @@
 				A9192D00218C1F99008544E8 /* UIImage+XLL.m */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		A9DA9ACE222382DF0087D9B3 /* Macro */ = {
+			isa = PBXGroup;
+			children = (
+				A9DA9ACF222382EA0087D9B3 /* Base */,
+			);
+			path = Macro;
+			sourceTree = "<group>";
+		};
+		A9DA9ACF222382EA0087D9B3 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				A9192CFC218C1ECD008544E8 /* XLLNavigationController.h */,
+				A9192CFD218C1ECD008544E8 /* XLLNavigationController.m */,
+				A9DA9AD0222383090087D9B3 /* XLLBaseController.h */,
+				A9DA9AD1222383090087D9B3 /* XLLBaseController.m */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9192CF8218C1917008544E8 /* XLLMineController.m in Sources */,
+				A9DA9AD2222383090087D9B3 /* XLLBaseController.m in Sources */,
 				A9A867B2218AC2B50042C298 /* XLLNavigationAlpha.xcdatamodeld in Sources */,
 				A9192CFE218C1ECD008544E8 /* XLLNavigationController.m in Sources */,
 				A9A867AC218AC2B50042C298 /* ViewController.m in Sources */,

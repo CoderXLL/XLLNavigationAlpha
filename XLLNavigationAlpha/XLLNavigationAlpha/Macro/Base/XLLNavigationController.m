@@ -9,7 +9,7 @@
 #import "XLLNavigationController.h"
 #import "UIImage+XLL.h"
 
-@interface XLLNavigationController ()
+@interface XLLNavigationController () <UIGestureRecognizerDelegate>
 
 @end
 
@@ -38,7 +38,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+//    id tagart = self.interactivePopGestureRecognizer.delegate;
+//    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:tagart action:@selector(handleNavigationTransition:)];
+//    [self.view addGestureRecognizer:pan];
+//    // 设置手势的代理
+//    pan.delegate = self;
+//    // 禁能系统的手势
+//    self.interactivePopGestureRecognizer.enabled = NO;
 }
+
+//- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+//{
+//        return YES;
+//}
+//
+//// 手势的代理方法
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+//{
+//    return YES;
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

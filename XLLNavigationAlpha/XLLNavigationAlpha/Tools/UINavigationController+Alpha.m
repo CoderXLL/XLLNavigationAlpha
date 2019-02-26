@@ -12,14 +12,37 @@
 
 @interface UINavigationController () <UINavigationBarDelegate>
 
+@property (nonatomic, assign) BOOL isHasPoped;
+@property (nonatomic, strong) UIViewController *popToVC;
 
 @end
 
 @implementation UINavigationController (Alpha)
 
+#pragma mark - setter, getter
+- (void)setIsHasPoped:(BOOL)isHasPoped
+{
+    objc_setAssociatedObject(self, @selector(isHasPoped), [NSNumber numberWithBool:isHasPoped], OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (BOOL)isHasPoped
+{
+    return [objc_getAssociatedObject(self, @selector(isHasPoped)) boolValue];
+}
+
+- (void)setPopToVC:(UIViewController *)popToVC
+{
+    objc_setAssociatedObject(self, @selector(popToVC), popToVC, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIViewController *)popToVC
+{
+    return objc_getAssociatedObject(self, @selector(popToVC));
+}
+
 + (void)load
 {
-    NSArray *arr = @[@"_updateInteractiveTransition:",@"popToViewController:animated:",@"popToRootViewControllerAnimated:",@"setDelegate:"];
+    NSArray *arr = @[@"_updateInteractiveTransition:",@"popToViewController:animated:",@"popToRootViewControllerAnimated:",@"setDelegate:",@"popViewControllerAnimated:"];
     for (NSString *methodStr in arr) {
         
         NSString *newMethodStr = [[@"xll_" stringByAppendingString:methodStr] stringByReplacingOccurrencesOfString:@"__" withString:@"_"];
@@ -56,15 +79,26 @@
 
 - (NSArray<UIViewController *> *)xll_popToViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    [self setNavigationBackgroundAlpha:viewController.navAlpha];
-    self.navigationBar.tintColor = viewController.navTintColor;
+//    [self setNavigationBackgroundAlpha:viewController.navAlpha];
+//    self.navigationBar.tintColor = viewController.navTintColor;
+    self.isHasPoped = YES;
+    self.popToVC = viewController;
     return [self xll_popToViewController:viewController animated:animated];
+}
+
+- (UIViewController *)xll_popViewControllerAnimated:(BOOL)animated
+{
+    UIViewController *popToVc = self.viewControllers[self.viewControllers.count - 2];
+    [self popToViewController:popToVc animated:animated];
+    return popToVc;
 }
 
 - (NSArray<UIViewController *> *)xll_popToRootViewControllerAnimated:(BOOL)animated
 {
-    [self setNavigationBackgroundAlpha:self.viewControllers.firstObject.navAlpha];
-    self.navigationBar.tintColor = self.viewControllers.firstObject.navTintColor;
+//    [self setNavigationBackgroundAlpha:self.viewControllers.firstObject.navAlpha];
+//    self.navigationBar.tintColor = self.viewControllers.firstObject.navTintColor;
+    self.isHasPoped = YES;
+    self.popToVC = self.viewControllers.firstObject;
     return [self xll_popToRootViewControllerAnimated:animated];
 }
 
@@ -98,6 +132,7 @@
         CGFloat nowAlpha = [context viewControllerForKey:key].navAlpha;
         [self setNavigationBackgroundAlpha:nowAlpha];
         self.navigationBar.tintColor = [context viewControllerForKey:key].navTintColor;
+        self.isHasPoped = NO;
     };
     if (context.isCancelled) {
         
@@ -173,9 +208,22 @@
         }
         return YES;
     }
-    UIViewController *popToVc = self.viewControllers[self.viewControllers.count - 2];
-    [self popToViewController:popToVc animated:YES];
+    
+    if (!self.isHasPoped) {
+        UIViewController *popToVc = self.viewControllers[self.viewControllers.count - 2];
+        [self popToViewController:popToVc animated:YES];
+        self.isHasPoped = NO;
+        [self setNavigationBackgroundAlpha:self.popToVC.navAlpha];
+        self.navigationBar.tintColor = self.popToVC.navTintColor;
+        return YES;
+    }
+    self.isHasPoped = NO;
+    [self setNavigationBackgroundAlpha:self.popToVC.navAlpha];
+    self.navigationBar.tintColor = self.popToVC.navTintColor;
     return YES;
+//    UIViewController *popToVc = self.viewControllers[self.viewControllers.count - 2];
+//    [self popToViewController:popToVc animated:YES];
+//    return YES;
 }
 
 - (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPushItem:(UINavigationItem *)item

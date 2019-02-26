@@ -6,8 +6,8 @@
 //  Copyright © 2018年 iOSCoder. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "XLLBaseController.h"
 
-@interface XLLMineController : UIViewController
+@interface XLLMineController : XLLBaseController
 
 @end

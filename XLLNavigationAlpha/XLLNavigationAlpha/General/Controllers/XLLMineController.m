@@ -27,7 +27,6 @@ static NSString *const ID = @"UITableViewCell";
     self.navAlpha = 0.0;
     self.navTintColor = [UIColor yellowColor];
     self.navTitleColor = [UIColor yellowColor];
-    
     [self setupTableView];
 }
 
