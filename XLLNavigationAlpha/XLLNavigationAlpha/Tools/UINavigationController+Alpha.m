@@ -73,7 +73,8 @@
     //6.设置转场中的tintColor
     UIColor *fromTintColor = fromVC.navTintColor;
     UIColor *toTintColor = toVC.navTintColor;
-    self.navigationBar.tintColor = [self getCurrentColor:fromTintColor toColor:toTintColor percentComplete:percentComplete];
+    UIColor *newTintColor = [self getCurrentColor:fromTintColor toColor:toTintColor percentComplete:percentComplete];
+    self.navigationBar.tintColor = newTintColor;
     [self xll_updateInteractiveTransition:percentComplete];
 }
 

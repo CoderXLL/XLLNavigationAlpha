@@ -39,8 +39,7 @@
 - (UIColor *)navTitleColor
 {
     UIColor *titleColor = objc_getAssociatedObject(self, @selector(navTitleColor));
-   UIColor *getColor = self.navigationController.navigationBar.titleTextAttributes[NSForegroundColorAttributeName];
-    return titleColor?titleColor:getColor;
+    return titleColor;
 }
 
 - (void)setNavTitleColor:(UIColor *)navTitleColor
@@ -48,20 +47,21 @@
     objc_setAssociatedObject(self, @selector(navTitleColor), navTitleColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
     dictM[NSForegroundColorAttributeName] = navTitleColor;
+    dictM[NSFontAttributeName] = self.navTitleFont;
     [self.navigationController.navigationBar setTitleTextAttributes:dictM];
 }
 
-- (CGFloat)navTitleFont
+- (UIFont *)navTitleFont
 {
-    CGFloat titleFont = [objc_getAssociatedObject(self, @selector(navTitleFont)) floatValue];
-    return titleFont>0?titleFont:17.0;
+    return objc_getAssociatedObject(self, @selector(navTitleFont));
 }
 
-- (void)setNavTitleFont:(CGFloat)navTitleFont
+- (void)setNavTitleFont:(NSFont *)navTitleFont
 {
-    objc_setAssociatedObject(self, @selector(navTitleFont), @(navTitleFont), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(navTitleFont), navTitleFont, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
-    dictM[NSFontAttributeName] = [UIFont systemFontOfSize:navTitleFont];
+    dictM[NSFontAttributeName] = navTitleFont;
+    dictM[NSForegroundColorAttributeName] = self.navTitleColor;
     [self.navigationController.navigationBar setTitleTextAttributes:dictM];
 }
 
@@ -75,6 +75,22 @@
 {
     objc_setAssociatedObject(self, @selector(navBarTintColor), navBarTintColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     self.navigationController.navigationBar.barTintColor = navBarTintColor;
+}
+
+- (NSString *)backImgName
+{
+    return objc_getAssociatedObject(self, @selector(backImgName));
+}
+
+- (void)setBackImgName:(NSString *)backImgName
+{
+    objc_setAssociatedObject(self, @selector(backImgName), backImgName, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    UIView *leftView = self.navigationItem.leftBarButtonItem.customView;
+    if (leftView && [leftView isKindOfClass:[UIButton class]])
+    {
+        UIButton *leftBtn = (UIButton *)leftView;
+        [leftBtn setImage:[UIImage imageNamed:backImgName] forState:UIControlStateNormal];
+    }
 }
 
 @end

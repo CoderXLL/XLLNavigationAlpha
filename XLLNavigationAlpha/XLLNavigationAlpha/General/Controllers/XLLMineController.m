@@ -26,8 +26,14 @@ static NSString *const ID = @"UITableViewCell";
     // Do any additional setup after loading the view.
     self.navAlpha = 0.0;
     self.navTintColor = [UIColor yellowColor];
-    self.navTitleColor = [UIColor yellowColor];
     [self setupTableView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navTitleFont = [UIFont systemFontOfSize:20];
+    self.navTitleColor = self.navTitleColor?self.navTitleColor:[UIColor redColor];
 }
 
 - (void)setupTableView
@@ -88,8 +94,8 @@ static NSString *const ID = @"UITableViewCell";
         CGFloat currentOffsetY = scrollView.contentOffset.y;
         CGFloat alpha = (currentOffsetY-64)*1.0/(self.headView.frame.size.height-64.0+scrollView.contentInset.top);
         self.navAlpha = alpha;
-        self.navTintColor = alpha>=1.0?[UIColor whiteColor]:[UIColor yellowColor];
-        self.navTitleColor = alpha>=1.0?[UIColor whiteColor]:[UIColor yellowColor];
+        self.navTitleColor = alpha>=1.0?[UIColor whiteColor]:[UIColor redColor];
+        self.backImgName = alpha>=1.0?@"back_normal_white":@"back_normal";
     }
 }
 

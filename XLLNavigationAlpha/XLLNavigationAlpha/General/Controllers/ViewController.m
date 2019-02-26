@@ -25,7 +25,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.navAlpha = 1.0;
-    self.navTintColor = [UIColor greenColor];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navTitleFont = [UIFont systemFontOfSize:17];
+    self.navTitleColor = [UIColor yellowColor];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

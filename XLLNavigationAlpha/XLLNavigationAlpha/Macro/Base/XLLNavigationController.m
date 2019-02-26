@@ -15,7 +15,6 @@
 
 @implementation XLLNavigationController
 
-
 + (void)initialize
 {
     // 所有navigationbar
