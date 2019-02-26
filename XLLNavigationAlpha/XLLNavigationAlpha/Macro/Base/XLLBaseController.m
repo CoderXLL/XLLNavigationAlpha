@@ -18,12 +18,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+//若注释此代码，项目中的navigationItem为系统默认
+//项目中的ViewController->XLLMineController，为segue线跳转。
+//XLLMineController->XLLNextController，为纯代码跳转
     [self setLeftBarItem:@selector(onBack:) image:@"back_normal" highlightedImage:@"back_normal"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+//可尝试注释下方代码，自定义导航侧滑
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
