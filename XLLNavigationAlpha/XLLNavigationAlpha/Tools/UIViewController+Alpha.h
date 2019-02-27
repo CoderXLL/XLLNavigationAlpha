@@ -18,6 +18,7 @@
 
 /**
  自定义返回按钮背景资源名
+ @discussion 在viewDidLoad:中设置
  */
 @property (nonatomic, copy) NSString *backImgName;
 
@@ -35,6 +36,7 @@
 
 /**
  当前控制器导航栏tintColor
+ @discussion 在viewDidLoad:中设置
  */
 @property (nonatomic, strong) UIColor *navTintColor;
 
