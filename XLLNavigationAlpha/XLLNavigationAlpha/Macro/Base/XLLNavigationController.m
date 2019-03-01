@@ -23,6 +23,7 @@
     UINavigationBar *navigationBar = [UINavigationBar appearanceWhenContainedIn:[self class], nil];
 //    UIImage *barImage = [UIImage imageWithColor:[UIColor redColor]];
 //    [navigationBar setBackgroundImage:barImage forBarMetrics:UIBarMetricsDefault];
+//    navigationBar.translucent = NO;
     [navigationBar setBarTintColor:[UIColor blueColor]];
     if ([UINavigationBar instancesRespondToSelector:@selector(setShadowImage:)]) {
         [navigationBar setShadowImage:[UIImage imageWithColor:[UIColor clearColor]]];
@@ -38,6 +39,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.view.backgroundColor = [UIColor whiteColor];
 //    id tagart = self.interactivePopGestureRecognizer.delegate;
 //    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:tagart action:@selector(handleNavigationTransition:)];
 //    [self.view addGestureRecognizer:pan];

@@ -21,6 +21,13 @@
 - (void)setNavAlpha:(CGFloat)navAlpha
 {
     objc_setAssociatedObject(self, @selector(navAlpha), @(navAlpha), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if (navAlpha < 1)
+    {
+        //必须满足这两个条件，导航根控制器顶部才能在导航栏底下
+        //否则就没有意义了
+        self.navigationController.navigationBar.translucent = YES;
+        self.edgesForExtendedLayout = UIRectEdgeTop;
+    }
     [self.navigationController setNavigationBackgroundAlpha:navAlpha];
 }
 

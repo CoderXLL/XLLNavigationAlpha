@@ -18,6 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.view.backgroundColor = [UIColor whiteColor];
 //若注释此代码，项目中的navigationItem为系统默认
 //项目中的ViewController->XLLMineController，为segue线跳转。
 //XLLMineController->XLLNextController，为纯代码跳转
