@@ -207,7 +207,18 @@
                 [self dealInteractionChanges:context];
             }];
         }
-        return YES;
+        
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+        NSString *alpha_shouldPop = [NSString stringWithFormat:@"alpha_%@", NSStringFromSelector(_cmd)];
+        if (![self respondsToSelector:NSSelectorFromString(alpha_shouldPop)])
+            return YES;
+#pragma clang diagnostic pop
+        
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        return [self performSelector:NSSelectorFromString(alpha_shouldPop) withObject:navigationBar withObject:item];
+#pragma clang diagnostic pop
     }
     
     if (!self.isHasPoped) {
@@ -216,12 +227,32 @@
         self.isHasPoped = NO;
         [self setNavigationBackgroundAlpha:self.popToVC.navAlpha];
         self.navigationBar.tintColor = self.popToVC.navTintColor;
-        return YES;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+        NSString *alpha_shouldPop = [NSString stringWithFormat:@"alpha_%@", NSStringFromSelector(_cmd)];
+        if (![self respondsToSelector:NSSelectorFromString(alpha_shouldPop)])
+            return YES;
+#pragma clang diagnostic pop
+        
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        return [self performSelector:NSSelectorFromString(alpha_shouldPop) withObject:navigationBar withObject:item];
+#pragma clang diagnostic pop
     }
     self.isHasPoped = NO;
     [self setNavigationBackgroundAlpha:self.popToVC.navAlpha];
     self.navigationBar.tintColor = self.popToVC.navTintColor;
-    return YES;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+    NSString *alpha_shouldPop = [NSString stringWithFormat:@"alpha_%@", NSStringFromSelector(_cmd)];
+    if (![self respondsToSelector:NSSelectorFromString(alpha_shouldPop)])
+        return YES;
+#pragma clang diagnostic pop
+    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    return [self performSelector:NSSelectorFromString(alpha_shouldPop) withObject:navigationBar withObject:item];
+#pragma clang diagnostic pop
 //    UIViewController *popToVc = self.viewControllers[self.viewControllers.count - 2];
 //    [self popToViewController:popToVc animated:YES];
 //    return YES;
@@ -231,8 +262,17 @@
 {
     [self setNavigationBackgroundAlpha:self.topViewController.navAlpha];
     self.navigationBar.tintColor = self.topViewController.navTintColor;
-    return YES;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+    NSString *alpha_shouldPush = [NSString stringWithFormat:@"alpha_%@", NSStringFromSelector(_cmd)];
+    if (![self respondsToSelector:NSSelectorFromString(alpha_shouldPush)])
+        return YES;
+#pragma clang diagnostic pop
+    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    return [self performSelector:NSSelectorFromString(alpha_shouldPush) withObject:navigationBar withObject:item];
+#pragma clang diagnostic pop
 }
-
 
 @end

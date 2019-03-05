@@ -49,6 +49,11 @@
 //    self.interactivePopGestureRecognizer.enabled = NO;
 }
 
+- (BOOL)alpha_navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item
+{
+    return YES;
+}
+
 //- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 //{
 //        return YES;
