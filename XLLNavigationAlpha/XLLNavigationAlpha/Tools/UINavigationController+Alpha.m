@@ -214,11 +214,9 @@
         if (![self respondsToSelector:NSSelectorFromString(alpha_shouldPop)])
             return YES;
 #pragma clang diagnostic pop
-        
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        return [self performSelector:NSSelectorFromString(alpha_shouldPop) withObject:navigationBar withObject:item];
-#pragma clang diagnostic pop
+        SEL shouldPopSel = NSSelectorFromString(alpha_shouldPop);
+        BOOL shouldPop = ((BOOL (*)(id, SEL, UINavigationBar *, UINavigationItem *))[self methodForSelector:shouldPopSel])(self, shouldPopSel, navigationBar, item);
+        return shouldPop;
     }
     
     if (!self.isHasPoped) {
@@ -233,11 +231,9 @@
         if (![self respondsToSelector:NSSelectorFromString(alpha_shouldPop)])
             return YES;
 #pragma clang diagnostic pop
-        
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        return [self performSelector:NSSelectorFromString(alpha_shouldPop) withObject:navigationBar withObject:item];
-#pragma clang diagnostic pop
+        SEL shouldPopSel = NSSelectorFromString(alpha_shouldPop);
+        BOOL shouldPop = ((BOOL (*)(id, SEL, UINavigationBar *, UINavigationItem *))[self methodForSelector:shouldPopSel])(self, shouldPopSel, navigationBar, item);
+        return shouldPop;
     }
     self.isHasPoped = NO;
     [self setNavigationBackgroundAlpha:self.popToVC.navAlpha];
@@ -248,11 +244,9 @@
     if (![self respondsToSelector:NSSelectorFromString(alpha_shouldPop)])
         return YES;
 #pragma clang diagnostic pop
-    
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    return [self performSelector:NSSelectorFromString(alpha_shouldPop) withObject:navigationBar withObject:item];
-#pragma clang diagnostic pop
+    SEL shouldPopSel = NSSelectorFromString(alpha_shouldPop);
+    BOOL shouldPop = ((BOOL (*)(id, SEL, UINavigationBar *, UINavigationItem *))[self methodForSelector:shouldPopSel])(self, shouldPopSel, navigationBar, item);
+    return shouldPop;
 //    UIViewController *popToVc = self.viewControllers[self.viewControllers.count - 2];
 //    [self popToViewController:popToVc animated:YES];
 //    return YES;
@@ -269,10 +263,9 @@
         return YES;
 #pragma clang diagnostic pop
     
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    return [self performSelector:NSSelectorFromString(alpha_shouldPush) withObject:navigationBar withObject:item];
-#pragma clang diagnostic pop
+    SEL shouldPushSel = NSSelectorFromString(alpha_shouldPush);
+    BOOL shouldPush = ((BOOL (*)(id, SEL, UINavigationBar *, UINavigationItem *))[self methodForSelector:shouldPushSel])(self, shouldPushSel, navigationBar, item);
+    return shouldPush;
 }
 
 @end
