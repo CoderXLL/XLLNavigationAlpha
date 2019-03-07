@@ -202,7 +202,6 @@
             }];
         } else {
             [transitionCtx notifyWhenInteractionEndsUsingBlock:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-                
                 [self dealInteractionChanges:context];
             }];
         }
